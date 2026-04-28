@@ -1,2 +1,0 @@
-# MusicSpace
-Aplicación iOS prueba
