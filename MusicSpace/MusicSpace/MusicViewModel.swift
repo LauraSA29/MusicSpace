@@ -1,5 +1,6 @@
-import Foundation
+import SwiftUI
 
+@MainActor
 class MusicViewModel: ObservableObject {
     @Published var songs: [Song] = []
 
@@ -7,16 +8,25 @@ class MusicViewModel: ObservableObject {
         guard let url = URL(string: "https://itunes.apple.com/search?term=drake&entity=song") else { return }
 
         URLSession.shared.dataTask(with: url) { data, _, error in
-            if let data = data {
-                do {
-                    let result = try JSONDecoder().decode(MusicResponse.self, from: data)
-                    DispatchQueue.main.async {
-                        self.songs = result.results
-                    }
-                } catch {
-                    print("Error decoding:", error)
-                }
+            
+            if let error = error {
+                print("Error:", error)
+                return
             }
-        }.resume()
+
+            guard let data = data else { return }
+
+            do {
+                let result = try JSONDecoder().decode(MusicResponse.self, from: data)
+                
+                Task {
+                    self.songs = result.results
+                }
+
+            } catch {
+                print("Error:", error)
+            }
+        }
+        .resume()
     }
 }

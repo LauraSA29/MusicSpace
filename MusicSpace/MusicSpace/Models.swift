@@ -9,4 +9,8 @@ struct Song: Codable, Identifiable {
     let trackName: String
     let artistName: String
     let artworkUrl100: String
+
+    enum CodingKeys: String, CodingKey {
+        case trackName, artistName, artworkUrl100
+    }
 }
