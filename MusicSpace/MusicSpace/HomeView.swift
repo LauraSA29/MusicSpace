@@ -5,7 +5,7 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
-            // 
+            // fondo c degradado colores
             LinearGradient(
                 colors: [Color.purple, Color.pink],
                 startPoint: .top,
@@ -13,20 +13,20 @@ struct HomeView: View {
             )
             .ignoresSafeArea()
 
+            // para hacer scroll y ver todos los datos
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
 
-                    // 
+                    // encabezado
                     header
 
-                    // 
+                    // las canciones populares y novedades
                     Text("Canciones populares:")
                         .font(.headline)
                         .padding(.horizontal)
 
                     popularSection
 
-                    // 
                     Text("Novedades:")
                         .font(.headline)
                         .padding(.horizontal)
@@ -36,45 +36,46 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            vm.fetchSongs()
+            vm.canciones()
         }
     }
 
-    // 
+    // el encabezado de la app
     var header: some View {
-        ZStack {
+        ZStack { //el fondo
             Color.black
                 .frame(height: 120)
                 .clipShape(RoundedCorner(radius: 40, corners: [.bottomLeft, .bottomRight]))
 
-            HStack {
+            HStack { //donde iría la foto
                 Circle()
                     .stroke(Color.purple, lineWidth: 3)
                     .frame(width: 60, height: 60)
 
+                //saludo al usuario
                 Text("¡Hola Laura!")
                     .foregroundColor(.white)
                     .bold()
 
-                Spacer()
+                Spacer() //espacio
 
-                Image(systemName: "gearshape.fill")
+                Image(systemName: "gearshape.fill") //imagen de la rueda de confiuración
                     .foregroundColor(.purple)
             }
             .padding()
         }
     }
 
-    // 
+    // sección de las canciones populares
     var popularSection: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(vm.songs.prefix(5)) { song in
+                ForEach(vm.songs.prefix(5)) { song in //salen solo 5
                     VStack {
                         AsyncImage(url: URL(string: song.artworkUrl100)) { image in
                             image.resizable()
                         } placeholder: {
-                            ProgressView()
+                            ProgressView() //para mostrar mientras carga la imagen
                         }
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
@@ -93,10 +94,10 @@ struct HomeView: View {
         }
     }
 
-    // 
+    // la sección de novedades
     var novedadesSection: some View {
         VStack {
-            ForEach(vm.songs.prefix(3)) { song in
+            ForEach(vm.songs.prefix(3)) { song in //salen solo 3
                 HStack {
                     AsyncImage(url: URL(string: song.artworkUrl100)) { image in
                         image.resizable()

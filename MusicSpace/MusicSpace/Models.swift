@@ -10,6 +10,7 @@ struct Song: Codable, Identifiable {
     let artistName: String
     let artworkUrl100: String
 
+// para mapear las claves del JSON porque me daba errores
     enum CodingKeys: String, CodingKey {
         case trackName, artistName, artworkUrl100
     }
