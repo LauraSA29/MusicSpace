@@ -7,7 +7,7 @@ struct HomeView: View {
         ZStack {
             // 
             LinearGradient(
-                colors: [Color.purple, Color.blue],
+                colors: [Color.purple, Color.pink],
                 startPoint: .top,
                 endPoint: .bottom
             )
@@ -20,14 +20,14 @@ struct HomeView: View {
                     header
 
                     // 
-                    Text("Canciones populares")
+                    Text("Canciones populares:")
                         .font(.headline)
                         .padding(.horizontal)
 
                     popularSection
 
                     // 
-                    Text("Novedades")
+                    Text("Novedades:")
                         .font(.headline)
                         .padding(.horizontal)
 

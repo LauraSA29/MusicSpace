@@ -1,16 +1,17 @@
 import SwiftUI
+import Combine
 
 @MainActor
 class MusicViewModel: ObservableObject {
     @Published var songs: [Song] = []
 
     func fetchSongs() {
-        guard let url = URL(string: "https://itunes.apple.com/search?term=drake&entity=song") else { return }
+        guard let url = URL(string: "https://itunes.apple.com/search?term=taylor&entity=song") else { return }
 
         URLSession.shared.dataTask(with: url) { data, _, error in
             
             if let error = error {
-                print("Error:", error)
+                print("El error:", error)
                 return
             }
 
@@ -24,7 +25,7 @@ class MusicViewModel: ObservableObject {
                 }
 
             } catch {
-                print("Error:", error)
+                print("El error:", error)
             }
         }
         .resume()
