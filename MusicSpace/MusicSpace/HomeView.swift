@@ -1,7 +1,10 @@
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
     @StateObject var vm = MusicViewModel()
+    @Environment(\.modelContext) private var context
+    @Query private var favoritas: [SongFavorita]
 
     var body: some View {
         ZStack {
@@ -84,6 +87,16 @@ struct HomeView: View {
                             .font(.caption)
                             .bold()
                             .multilineTextAlignment(.center)
+
+                        Button {
+
+                            guardarFavorita(song)
+
+                        } label: {
+
+                            Image(systemName: esFavorita(song) ? "heart.fill" : "heart")
+                                .foregroundColor(.red)
+                        }
                     }
                     .padding()
                     .background(Color.blue.opacity(0.3))
@@ -122,6 +135,35 @@ struct HomeView: View {
                 .cornerRadius(15)
                 .padding(.horizontal)
             }
+        }
+    }
+
+     // guardar o eliminar favoritas
+    func guardarFavorita(_ song: Song) {
+
+        if let favoritaExistente = favoritas.first(where: {
+            $0.trackName == song.trackName
+        }) {
+
+            context.delete(favoritaExistente)
+
+        } else {
+
+            let nuevaFavorita = SongFavorita(
+                trackName: song.trackName,
+                artistName: song.artistName,
+                artworkUrl100: song.artworkUrl100
+            )
+
+            context.insert(nuevaFavorita)
+        }
+    }
+
+    // comprobar si es favorita
+    func esFavorita(_ song: Song) -> Bool {
+
+        favoritas.contains {
+            $0.trackName == song.trackName
         }
     }
 }

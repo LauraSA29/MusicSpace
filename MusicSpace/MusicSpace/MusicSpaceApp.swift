@@ -13,5 +13,6 @@ struct MusicSpaceApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: SongFavorita.self)
     }
 }

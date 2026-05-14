@@ -7,7 +7,7 @@ class MusicViewModel: ObservableObject {
 
     func canciones() {
         // API de Apple (iTunes)
-        guard let url = URL(string: "https://itunes.apple.com/search?term=taylor&entity=song") else { return }
+        guard let url = URL(string: "https://itunes.apple.com/search?term=pop&entity=song") else { return }
 
         // la solicitud de datos en internet
         URLSession.shared.dataTask(with: url) { data, _, error in
