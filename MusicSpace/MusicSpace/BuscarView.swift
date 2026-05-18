@@ -31,6 +31,7 @@ struct BuscarView: View {
                 ZStack {
                     Color.black
                         .frame(height: 120)
+                        .ignoresSafeArea(edges: .top)
                         .clipShape(RoundedCorner(radius: 40, corners: [.bottomLeft, .bottomRight]))
 
                     HStack {
@@ -40,15 +41,15 @@ struct BuscarView: View {
                             .bold()
 
                         Spacer()
-
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.purple)
                     }
                     .padding()
                 }
 
                 //barra de búsqueda
                 HStack {
+                    Image(systemName: "magnifyingglass")
+                            .foregroundColor(.purple)
+                            
                     TextField("Buscar canciones o artistas", text: $busqueda)
                         .padding()
                         .background(Color.white)

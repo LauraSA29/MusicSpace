@@ -23,6 +23,7 @@ struct PerfilView: View {
 
                         Color.black
                             .frame(height: 180)
+                            .ignoresSafeArea(edges: .top)
                             .clipShape(
                                 RoundedCorner(
                                     radius: 40,

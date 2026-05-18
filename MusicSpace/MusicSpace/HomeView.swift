@@ -48,6 +48,7 @@ struct HomeView: View {
         ZStack { //el fondo
             Color.black
                 .frame(height: 120)
+                .ignoresSafeArea(edges: .top)
                 .clipShape(RoundedCorner(radius: 40, corners: [.bottomLeft, .bottomRight]))
 
             HStack { //donde iría la foto
@@ -99,7 +100,7 @@ struct HomeView: View {
                         }
                     }
                     .padding()
-                    .background(Color.blue.opacity(0.3))
+                    .background(Color.white.opacity(0.3))
                     .cornerRadius(15)
                 }
             }

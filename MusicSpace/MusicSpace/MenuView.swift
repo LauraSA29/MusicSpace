@@ -60,7 +60,10 @@ struct MenuView: View {
                 Spacer()
             }
             .padding()
-            .background(Color.black)
+            .background(
+                Color.black
+                    .ignoresSafeArea(edges: .bottom)
+            )
             .clipShape(
                 RoundedCorner(
                     radius: 35,
