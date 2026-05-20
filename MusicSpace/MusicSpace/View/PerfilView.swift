@@ -34,7 +34,7 @@ struct PerfilView: View {
                                 )
                             )
 
-                        VStack(spacing: 15) {
+                        VStack(spacing: 35) {
 
                             // imagen usuario perfil
                             Image("perfil")

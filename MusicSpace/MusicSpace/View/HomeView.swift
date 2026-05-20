@@ -73,9 +73,14 @@ struct HomeView: View {
             HStack {
 
                 // la foto
-                Circle()
-                    .stroke(Color.purple, lineWidth: 3)
+                Image("perfil")
+                    .resizable()
+                    .scaledToFill()
                     .frame(width: 60, height: 60)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.purple, lineWidth: 3)
+                    )
 
                 //saludo al usuario
                 Text("¡Hola Laura!")

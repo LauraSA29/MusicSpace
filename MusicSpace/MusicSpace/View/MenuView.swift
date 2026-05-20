@@ -31,7 +31,7 @@ struct MenuView: View {
                 Spacer()
 
                 Button {
-                    elección = 0
+                    eleccion = 0
                 } label: {
                     Image(systemName: "house.fill") // inicio home
                         .font(.title2)
