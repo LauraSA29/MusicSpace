@@ -10,20 +10,26 @@ struct MenuView: View {
 
             // pantallas de la app
             Group {
-                switch eleccion {
+
+                switch selectedTab {
+
                 case 0:
                     HomeView()
+                        .transition(.move(edge: .leading)) // transición para la pantalla de inicio
 
                 case 1:
                     BuscarView()
+                        .transition(.opacity) // transición para la pantalla de búsqueda
 
                 case 2:
                     PerfilView()
+                        .transition(.move(edge: .trailing)) // transición para la pantalla de perfil
 
                 default:
                     HomeView()
                 }
             }
+            .animation(.easeInOut(duration: 0.3), value: selectedTab)
 
             // barra de navegación con los botones para cambiar de pantalla
             HStack {
