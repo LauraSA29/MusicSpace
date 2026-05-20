@@ -6,7 +6,7 @@ class MusicViewModel: ObservableObject {
     @Published var songs: [Song] = []
 
     func canciones() {
-        // API de Apple (iTunes)
+        // API de Apple iTunes
         guard let url = URL(string: "https://itunes.apple.com/search?term=pop&entity=song") else { return }
 
         // la solicitud de datos en internet

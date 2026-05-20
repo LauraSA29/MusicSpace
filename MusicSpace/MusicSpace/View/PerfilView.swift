@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 
+//perfil del usuario
 struct PerfilView: View {
     @Query private var favoritas: [SongFavorita]
 
@@ -15,14 +16,16 @@ struct PerfilView: View {
             )
             .ignoresSafeArea()
 
-            ScrollView {
+            ScrollView(showsIndicators: false) {
+
                 VStack(spacing: 20) {
 
                     // el header
                     ZStack(alignment: .top) {
 
+                        // fondo negro del header
                         Color.black
-                            .frame(height: 180)
+                            .frame(height: 260)
                             .ignoresSafeArea(edges: .top)
                             .clipShape(
                                 RoundedCorner(
@@ -37,23 +40,25 @@ struct PerfilView: View {
                             Image("perfil")
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 150, height: 150)
+                                .frame(width: 140, height: 140)
                                 .clipShape(Circle())
                                 .overlay(
                                     Circle()
                                         .stroke(Color.purple, lineWidth: 4)
                                 )
-                                .padding(.top, 40)
+                                .padding(.top, 30)
 
-                            // nombre usuario
+                            //nombre usuario
                             Text("LAURA SALAS")
                                 .font(.title2)
                                 .bold()
+                                .foregroundColor(.white)
 
                             // secciones del perfil
                             VStack(spacing: 15) {
 
                                 perfilCard(texto: "Canciones escuchadas")
+
                                 VStack(spacing: 15) {
 
                                     Text("Favoritas")

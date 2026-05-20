@@ -1,5 +1,6 @@
 import SwiftData
 
+//clase para almacenar las canciones favoritas en la base de datos local utilizando SwiftData
 @Model
 class SongFavorita {
 

@@ -1,5 +1,6 @@
 import Foundation
 
+//modelo para mapear la respuesta de la API de iTunes
 struct MusicResponse: Codable {
     let results: [Song]
 }

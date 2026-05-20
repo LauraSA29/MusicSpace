@@ -1,15 +1,16 @@
 import SwiftUI
 
+// vista del menú de navegación de la app
 struct MenuView: View {
 
-    @State private var selectedTab = 0
+    @State private var eleccion = 0
 
     var body: some View {
         ZStack(alignment: .bottom) {
 
             // pantallas de la app
             Group {
-                switch selectedTab {
+                switch eleccion {
                 case 0:
                     HomeView()
 
@@ -24,37 +25,37 @@ struct MenuView: View {
                 }
             }
 
-            // barra inferior personalizada (para la navegación)
+            // barra de navegación con los botones para cambiar de pantalla
             HStack {
 
                 Spacer()
 
                 Button {
-                    selectedTab = 0
+                    elección = 0
                 } label: {
-                    Image(systemName: "house.fill")
+                    Image(systemName: "house.fill") // inicio home
                         .font(.title2)
-                        .foregroundColor(selectedTab == 0 ? .white : .gray)
+                        .foregroundColor(eleccion == 0 ? .white : .gray)
                 }
 
                 Spacer()
 
                 Button {
-                    selectedTab = 1
+                    eleccion = 1
                 } label: {
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: "magnifyingglass") // buscar
                         .font(.title2)
-                        .foregroundColor(selectedTab == 1 ? .purple : .gray)
+                        .foregroundColor(eleccion == 1 ? .purple : .gray)
                 }
 
                 Spacer()
 
                 Button {
-                    selectedTab = 2
+                    eleccion = 2
                 } label: {
-                    Image(systemName: "person")
+                    Image(systemName: "person") // perfil
                         .font(.title2)
-                        .foregroundColor(selectedTab == 2 ? .purple : .gray)
+                        .foregroundColor(eleccion == 2 ? .purple : .gray)
                 }
 
                 Spacer()
@@ -63,12 +64,6 @@ struct MenuView: View {
             .background(
                 Color.black
                     .ignoresSafeArea(edges: .bottom)
-            )
-            .clipShape(
-                RoundedCorner(
-                    radius: 35,
-                    corners: [.topLeft, .topRight]
-                )
             )
         }
         .ignoresSafeArea(.keyboard)

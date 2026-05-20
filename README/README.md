@@ -13,12 +13,7 @@ Para el próximo ejercicio de entrega de una aplicación iOS más completa se re
 ## 2. Diseño
 ### 2.1 ¿Diseño de la aplicación? ¿Dónde se diseñó?
 Al ser un ejercicio más de conexión, el diseño es algo más simple por el momento y solo tendrá la pantalla de inicio con los datos de la API. Como todos los diseños de mis anteriores trabajos, todo se diseñó en Canva, se pondrá el diseño inicial en cada apartado junto con el diseño final de cómo se ve en la app en ejecución.
-<!-->#### 2.1.2 Buscar
-#### 2.1.3 Favoritas
-#### 2.1.4 Perfil usuario
-#### 2.1.5 Detalle de la película
-#### 2.1.6 Navegación
-#### 2.1.3 Nombre + Icono de la app<!-->
+
 #### 2.1.1 Inicio
 Aquí se ve la única pantalla de la app, en ella se muestran los datos que se cogen de la API, también se ven algunos pequeños elementos de decoración como colores, el header y las tarjetas.
 
@@ -27,6 +22,13 @@ Aquí se ve la única pantalla de la app, en ella se muestran los datos que se c
 #### 2.1.2 Icono de la app
 El icono que se usará en la app es el siguiente: (por el momento no está añadido pero sí diseñado)
 ![alt text](image-1.png)
+
+#### 2.1.3 Buscar
+#### 2.1.4 Favoritas
+#### 2.1.5 Perfil usuario
+#### 2.1.6 Detalle de la película
+#### 2.1.7 Navegación
+#### 2.1.8 Nombre + Icono de la app
 
 ---
 

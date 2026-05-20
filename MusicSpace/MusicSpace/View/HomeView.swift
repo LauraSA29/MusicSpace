@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 
+// inicio de la app
 struct HomeView: View {
     @StateObject var vm = MusicViewModel()
     @Environment(\.modelContext) private var context
@@ -8,6 +9,7 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
+
             // fondo c degradado colores
             LinearGradient(
                 colors: [Color.purple, Color.pink],
@@ -16,28 +18,35 @@ struct HomeView: View {
             )
             .ignoresSafeArea()
 
-            // para hacer scroll y ver todos los datos
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+            VStack(spacing: 0) {
 
-                    // encabezado
-                    header
+                // encabezado
+                header
 
-                    // las canciones populares y novedades
-                    Text("Canciones populares:")
-                        .font(.headline)
-                        .padding(.horizontal)
+                // para hacer scroll y ver todos los datos
+                ScrollView(showsIndicators: false) {
 
-                    popularSection
+                    VStack(alignment: .leading, spacing: 20) {
 
-                    Text("Novedades:")
-                        .font(.headline)
-                        .padding(.horizontal)
+                        // las canciones populares y novedades
+                        Text("Canciones populares:")
+                            .font(.headline)
+                            .padding(.horizontal)
 
-                    novedadesSection
+                        popularSection
+
+                        Text("Novedades:")
+                            .font(.headline)
+                            .padding(.horizontal)
+
+                        novedadesSection
+                    }
+                    .padding(.top, 20)
+                    .padding(.bottom, 100)
                 }
             }
         }
+        .ignoresSafeArea(edges: .top)
         .onAppear {
             vm.canciones()
         }
@@ -45,13 +54,25 @@ struct HomeView: View {
 
     // el encabezado de la app
     var header: some View {
-        ZStack { //el fondo
+
+        ZStack {
+
+            Color.black
+                .ignoresSafeArea(edges: .top)
+
+            // header con curvas
             Color.black
                 .frame(height: 120)
-                .ignoresSafeArea(edges: .top)
-                .clipShape(RoundedCorner(radius: 40, corners: [.bottomLeft, .bottomRight]))
+                .clipShape(
+                    RoundedCorner(
+                        radius: 40,
+                        corners: [.bottomLeft, .bottomRight]
+                    )
+                )
 
-            HStack { //donde iría la foto
+            HStack {
+
+                // la foto
                 Circle()
                     .stroke(Color.purple, lineWidth: 3)
                     .frame(width: 60, height: 60)
@@ -61,21 +82,28 @@ struct HomeView: View {
                     .foregroundColor(.white)
                     .bold()
 
-                Spacer() //espacio
+                Spacer()
 
-                Image(systemName: "gearshape.fill") //imagen de la rueda de confiuración
+                //imagen de la rueda de confiuración
+                Image(systemName: "gearshape.fill")
                     .foregroundColor(.purple)
             }
             .padding()
         }
+        .frame(height: 120)
     }
 
     // sección de las canciones populares
     var popularSection: some View {
+
         ScrollView(.horizontal, showsIndicators: false) {
+
             HStack {
+
                 ForEach(vm.songs.prefix(5)) { song in //salen solo 5
+
                     VStack {
+
                         AsyncImage(url: URL(string: song.artworkUrl100)) { image in
                             image.resizable()
                         } placeholder: {
@@ -100,7 +128,7 @@ struct HomeView: View {
                         }
                     }
                     .padding()
-                    .background(Color.white.opacity(0.3))
+                    .background(Color.white)
                     .cornerRadius(15)
                 }
             }
@@ -110,9 +138,13 @@ struct HomeView: View {
 
     // la sección de novedades
     var novedadesSection: some View {
+
         VStack {
+
             ForEach(vm.songs.prefix(3)) { song in //salen solo 3
+
                 HStack {
+
                     AsyncImage(url: URL(string: song.artworkUrl100)) { image in
                         image.resizable()
                     } placeholder: {
@@ -122,8 +154,10 @@ struct HomeView: View {
                     .cornerRadius(10)
 
                     VStack(alignment: .leading) {
+
                         Text(song.trackName)
                             .bold()
+
                         Text(song.artistName)
                             .font(.caption)
                             .foregroundColor(.gray)
@@ -139,7 +173,7 @@ struct HomeView: View {
         }
     }
 
-     // guardar o eliminar favoritas
+    // guardar o eliminar favoritas
     func guardarFavorita(_ song: Song) {
 
         if let favoritaExistente = favoritas.first(where: {
@@ -168,3 +202,4 @@ struct HomeView: View {
         }
     }
 }
+
