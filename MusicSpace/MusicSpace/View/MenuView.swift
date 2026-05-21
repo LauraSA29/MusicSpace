@@ -11,7 +11,7 @@ struct MenuView: View {
             // pantallas de la app
             Group {
 
-                switch selectedTab {
+                switch eleccion {
 
                 case 0:
                     HomeView()
@@ -29,7 +29,7 @@ struct MenuView: View {
                     HomeView()
                 }
             }
-            .animation(.easeInOut(duration: 0.3), value: selectedTab)
+            .animation(.easeInOut(duration: 0.3), value: eleccion)
 
             // barra de navegación con los botones para cambiar de pantalla
             HStack {
